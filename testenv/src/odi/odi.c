@@ -68,7 +68,7 @@ u32 odi_discover_drivers() {
 }
 
 //Both available in manual and automatic mode
-struct odi_device_info * odi_manual_device_register(u32 major, void* control) {
+void * odi_manual_device_register(u32 major, void* control) {
     odi_debug_append(ODI_DTAG_INFO, "ODI MANUAL DEVICE REGISTER REQUEST\n");
     return odi_device_register(major, control);
 }
