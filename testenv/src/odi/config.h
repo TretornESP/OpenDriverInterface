@@ -8,4 +8,6 @@
 
 #define ODI_DEBUG_ENABLED 1
 
+#define ODI_MAX_MAJORS 256
+
 #endif

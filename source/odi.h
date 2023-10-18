@@ -3,17 +3,24 @@
 
 #include "types.h"
 #include "driver.h"
-#include "bus.h"
+#include "device.h"
 
-struct odi_driver_info odi_list_drivers();
-bool odi_register_driver(struct odi_driver_info driver);
+//Only in automatic mode
+u32 odi_discover_devices();
+u32 odi_discover_drivers();
 
-void odi_start_managed(void * rdsp);
+//Both available in manual and automatic mode
+struct odi_device_info * odi_manual_device_register(u32 major, void* control);
+u8 odi_manual_device_unregister(u32 major, u32 minor);
 
-struct odi_bus_info odi_list_buses();
-bool odi_register_bus(struct odi_bus_info bus);
+//Operations
+u64 odi_read(const char * device, u64 offset, u64 size, void * buffer);
+u64 odi_write(const char * device, u64 offset, u64 size, void * buffer);
+u64 odi_ioctl(const char * device, u64 operation, void * buffer);
 
+//Debug
+void odi_list_devices();
+void odi_list_drivers();
 void odi_hello();
-
 
 #endif

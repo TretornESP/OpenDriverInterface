@@ -1,6 +1,8 @@
 #ifndef _ODI_DEPENDENCIES_H
 #define _ODI_DEPENDENCIES_H
 
+#include "types.h"
+
 #include <stdarg.h>
 
 typedef va_list odi_va_list;
@@ -8,6 +10,7 @@ typedef va_list odi_va_list;
 int odi_dep_strcmp(const char* str1, const char* str2);
 int odi_dep_strncmp(const char* str1, const char* str2, int n);
 int odi_dep_strlen(const char* str);
+void odi_dep_strncpy(char *dest, const char *src, int n);
 
 void* odi_dep_malloc(int size);
 void odi_dep_free(void* ptr);

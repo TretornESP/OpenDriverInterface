@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stdarg.h": "c",
-        "memory.h": "c"
+        "driver.h": "c",
+        "dependencies.h": "c"
     }
 }
