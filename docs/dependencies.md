@@ -21,6 +21,7 @@ Before you can run a program, ensure you have the following prerequisites instal
   - **fdisk**: A command-line disk partitioning tool.
   - **mkfs.fat**: A utility for creating FAT file systems.
   - **mkfs.ext2**: A utility for creating ext2 file systems.
+  - **tree**: A utility for displaying directory trees.
   - **partprobe**: A tool for informing the OS kernel of partition table changes.
 
 ## What and what do I need to configure?

@@ -152,6 +152,8 @@ $(OBJDIR)/%_s.o: $(SRCDIR)/%.S
 
 copy:
 	@echo !==== COPYING FILES
+	@rm -rf $(SRCDIR)/odi
+	@rm -rf $(SRCDIR)/drivers
 	@cp -a $(ODIDIR)/. $(SRCDIR)/odi/
 	@cp -a $(DRVDIR)/. $(SRCDIR)/drivers/
 	@tree $(SRCDIR)/
@@ -254,7 +256,7 @@ help:
 	@echo Finally run: make clean
 
 debug:
-	@echo "WARNING: RIGHT NOW ONLY WSL IS SUPPORTED"
+	@echo "WARNING: RIGHT NOW ONLY WSL DEBUGGING IS SUPPORTED"
 	@make kernel
 	@echo "Building GPT..."
 #This is required to be before buildimggpt!

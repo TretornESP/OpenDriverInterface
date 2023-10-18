@@ -25,6 +25,14 @@ int odi_dep_strncmp(const char* s1, const char* s2, int n) {
     //You can implement your own strncmp here
 }
 
+void odi_dep_strncpy(char *dest, const char *src, int n) {
+    #ifdef USE_BMOON
+    return strncpy(dest, src, n);
+    #endif
+
+    //You can implement your own strncpy here
+}
+
 int odi_dep_strlen(const char* str) {
     #ifdef USE_BMOON
     return strlen(str);

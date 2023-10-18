@@ -74,6 +74,17 @@ void odi_debug_append(const char* tag, char * message, ...) {
     return;
 }
 
+void odi_debug_flusha() {
+    for (int i = 0; i < ODI_DEBUG_MAX_TAGS; i++) {
+        odi_debug_flush(dqueue[i].tag);
+    }
+}
+void odi_debug_cleara() {
+    for (int i = 0; i < ODI_DEBUG_MAX_TAGS; i++) {
+        odi_debug_clear(dqueue[i].tag);
+    }
+}
+
 void odi_debug_flush(const char * tag) {
     struct odi_debug_queue* queue = get_queue(tag);
     if (queue == 0x0) {
