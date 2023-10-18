@@ -15,7 +15,8 @@ const char* MAJOR_PREFIXES[ODI_MAX_MAJORS] = {
     [0xf] = "kbd", // f
     [0x10] = "mouse", // 10
     [0x11] = "net", // 11
-    [0x12 ... ODI_MAX_MAJORS - 1] = "none",
+    [0x12 ... 254] = "none",
+    [255] = "basic"
 };
 
 struct identifier {
@@ -99,7 +100,7 @@ u64 odi_read(const char * device, u64 offset, u64 size, void * buffer) {
     }
 
     //TODO: Make this return the number of bytes written
-    ((struct odi_driver_functions*)driver_info->functions)->read(device_info->control, buffer, device_info->minor, size, offset);
+    odi_driver_read(device_info->major, buffer, device_info->control, size, offset);
 
     return 1;
 }
@@ -125,8 +126,7 @@ u64 odi_write(const char * device, u64 offset, u64 size, void * buffer) {
     }
 
     //TODO: Make this return the number of bytes written
-    ((struct odi_driver_functions*)driver_info->functions)->write(device_info->control, buffer, device_info->minor, size, offset);
-
+    odi_driver_write(device_info->major, buffer, device_info->control, size, offset);
     return 1;
 }
 
@@ -151,7 +151,7 @@ u64 odi_ioctl(const char * device, u64 operation, void * buffer) {
     }
 
     //TODO: Make this return the number of bytes written
-    ((struct odi_driver_functions*)driver_info->functions)->ioctl(device_info->control, buffer, device_info->minor, operation);
+    odi_driver_ioctl(device_info->major, buffer, device_info->control, operation);
 
     return 1;
 }
