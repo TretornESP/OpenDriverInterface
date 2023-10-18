@@ -29,9 +29,9 @@ struct odi_driver_info {
 struct odi_driver_functions {
     void * (*init) (struct odi_driver_info * self, void* iobuff);
     void * (*exit) (struct odi_driver_info * self, void* iobuff);
-    void * (*read) (struct odi_driver_info * self, void* iobuff, u32 minor, u64 read_size, u64 read_offset);
-    void * (*write)(struct odi_driver_info * self, void* iobuff, u32 minor, u64 write_size, u64 write_offset);
-    void * (*ioctl)(struct odi_driver_info * self, void* iobuff, u32 minor, u64 operation);
+    void * (*read) (struct odi_driver_info * self, void* iobuff, void* control, u64 read_size,  u64 read_offset);
+    void * (*write)(struct odi_driver_info * self, void* iobuff, void* control, u64 write_size, u64 write_offset);
+    void * (*ioctl)(struct odi_driver_info * self, void* iobuff, void* control, u64 operation);
 } __attribute__((packed));
 
 //Registers a new device driver given a major number, a pointer to a generic_driver_functions struct (or compatible)
@@ -53,8 +53,8 @@ struct odi_driver_info * odi_driver_get(u32 major);
 //Exported functions, abstraction layer resides here
 void * odi_driver_init(u32 major, void* iobuff);
 void * odi_driver_exit(u32 major, void* iobuff);
-void * odi_driver_read(u32 major, void* iobuff, u32 minor, u64 read_size, u64 read_offset);
-void * odi_driver_write(u32 major, void* iobuff, u32 minor, u64 write_size, u64 write_offset);
-void * odi_driver_ioctl(u32 major, void* iobuff, u32 minor, u64 operation);
+void * odi_driver_read(u32 major, void* iobuff, void* control, u64 read_size, u64 read_offset);
+void * odi_driver_write(u32 major, void* iobuff, void* control, u64 write_size, u64 write_offset);
+void * odi_driver_ioctl(u32 major, void* iobuff, void* control, u64 operation);
 
 #endif
