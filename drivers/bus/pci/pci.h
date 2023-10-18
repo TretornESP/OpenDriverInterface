@@ -284,7 +284,7 @@ struct device_config {
     u8 start_bus;
     u8 end_bus;
     u32 reserved;
-};
+} __attribute__ ((packed));
 
 void pci_set_irq(struct pci_device_header_0* pci, u8 irq);
 u64 get_bar_size(void* addresslow, u32 base_address);

@@ -262,8 +262,8 @@ help:
 
 debug:
 	@echo "WARNING: RIGHT NOW ONLY WSL DEBUGGING IS SUPPORTED"
+	@make copy
 	@make kernel
-	@make ccopy
 	@echo "Building GPT..."
 #This is required to be before buildimggpt!
 	@cp $(ISODIR)/$(IMG_RAW) $(ISODIR)/$(IMG)
@@ -271,6 +271,7 @@ debug:
 # Due to eval weird behaviour
 	@make buildimggpt
 	@make rundebug
+	@make ccopy
 
 rundebug:
 	@echo "Running GPT QEMU..."
