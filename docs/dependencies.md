@@ -11,6 +11,7 @@ Before you can run a program, ensure you have the following prerequisites instal
 - **Software Programs**:
   - **gcc**: The GNU Compiler Collection.
   - **ld**: The GNU Linker.
+  - **tree**: The utilitu to explore folders.
   - **qemu (on Windows host)**: A virtual machine emulator.
   - **gdb**: The GNU Debugger.
   - **gnumakefile**: A makefile for building projects.
