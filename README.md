@@ -45,3 +45,12 @@ OpenDriverInterface is released under the MIT License. For more details, refer t
 If you have questions, suggestions, or need assistance, you can contact us at [contact@opendriverinterface.com](mailto:contact@opendriverinterface.com).
 
 We hope that OpenDriverInterface simplifies your journey into OS development by providing a robust and well-documented framework for device driver integration. Happy coding! 🚀
+
+## Acknowledgements
+
+We would like to thank the following people for their contributions to OpenDriverInterface:
+
+- Keep-Konect [github](https://github.com/Keep-Konect)
+- Marco Paland [email](mailto://info@paland.com)
+- Absurd Poncho [github](https://github.com/Absurdponcho)
+- The Limine project [github](https://github.com/limine-bootloader)
