@@ -27,12 +27,13 @@ u8 convert_name(const char * name , struct identifier * identifier) {
     //Get last character of name
     char last = name[odi_dep_strlen(name) - 1];
     //The minor is the last character converted to a number
+    //0 is equivalent to a and A.
     if (last >= '0' && last <= '9') {
         identifier->minor = last - '0';
     } else if (last >= 'a' && last <= 'z') {
-        identifier->minor = last - 'a' + 10;
+        identifier->minor = last - 'a';
     } else if (last >= 'A' && last <= 'Z') {
-        identifier->minor = last - 'A' + 10;
+        identifier->minor = last - 'A';
     } else {
         return 0;
     }
@@ -81,18 +82,24 @@ u64 odi_read(const char * device, u64 offset, u64 size, void * buffer) {
     odi_debug_append(ODI_DTAG_INFO, "ODI READ REQUEST\n");
     struct identifier identifier;
     if (convert_name(device, &identifier) == 0) {
-        odi_debug_append(ODI_DTAG_ERROR, "ODI READ FAILED, DEVICE %s NOT FOUND\n", device);
+        odi_debug_append(ODI_DTAG_ERROR, "[%s] ODI READ FAILED, DEVICE NAME INVALID\n", device);
         return 0;
     }
 
     struct odi_device_info * device_info = odi_device_get(identifier.major, identifier.minor);
     if (device_info == 0) {
-        odi_debug_append(ODI_DTAG_ERROR, "ODI READ FAILED\n");
+        odi_debug_append(ODI_DTAG_ERROR, "[%s] ODI READ FAILED, DEVICE NOT FOUND\n", device);
         return 0;
     }
 
-    //TODO: Make this return the number of bytes read
-    ((struct odi_driver_functions*)device_info->control)->read(device_info->control, buffer, device_info->minor, size, offset);
+    struct odi_driver_info * driver_info = odi_driver_get(identifier.major);
+    if (driver_info == 0) {
+        odi_debug_append(ODI_DTAG_ERROR, "[%s] ODI READ FAILED, DRVIER NOT FOUND\n", device);
+        return 0;
+    }
+
+    //TODO: Make this return the number of bytes written
+    ((struct odi_driver_functions*)driver_info->functions)->read(device_info->control, buffer, device_info->minor, size, offset);
 
     return 1;
 }
@@ -101,18 +108,24 @@ u64 odi_write(const char * device, u64 offset, u64 size, void * buffer) {
     odi_debug_append(ODI_DTAG_INFO, "ODI WRITE REQUEST\n");
     struct identifier identifier;
     if (convert_name(device, &identifier) == 0) {
-        odi_debug_append(ODI_DTAG_ERROR, "ODI WRITE FAILED, DEVICE %s NOT FOUND\n", device);
+        odi_debug_append(ODI_DTAG_ERROR, "[%s] ODI WRITE FAILED, DEVICE NAME INVALID\n", device);
         return 0;
     }
 
     struct odi_device_info * device_info = odi_device_get(identifier.major, identifier.minor);
     if (device_info == 0) {
-        odi_debug_append(ODI_DTAG_ERROR, "ODI WRITE FAILED\n");
+        odi_debug_append(ODI_DTAG_ERROR, "[%s] ODI WRITE FAILED, DEVICE NOT FOUND\n", device);
+        return 0;
+    }
+
+    struct odi_driver_info * driver_info = odi_driver_get(identifier.major);
+    if (driver_info == 0) {
+        odi_debug_append(ODI_DTAG_ERROR, "[%s] ODI WRITE FAILED, DRVIER NOT FOUND\n", device);
         return 0;
     }
 
     //TODO: Make this return the number of bytes written
-    ((struct odi_driver_functions*)device_info->control)->write(device_info->control, buffer, device_info->minor, size, offset);
+    ((struct odi_driver_functions*)driver_info->functions)->write(device_info->control, buffer, device_info->minor, size, offset);
 
     return 1;
 }
@@ -121,17 +134,24 @@ u64 odi_ioctl(const char * device, u64 operation, void * buffer) {
     odi_debug_append(ODI_DTAG_INFO, "ODI IOCTL REQUEST\n");
     struct identifier identifier;
     if (convert_name(device, &identifier) == 0) {
-        odi_debug_append(ODI_DTAG_ERROR, "ODI IOCTL FAILED, DEVICE %s NOT FOUND\n", device);
+        odi_debug_append(ODI_DTAG_ERROR, "[%s] ODI IOCTL FAILED, DEVICE NAME INVALID\n", device);
         return 0;
     }
 
     struct odi_device_info * device_info = odi_device_get(identifier.major, identifier.minor);
     if (device_info == 0) {
-        odi_debug_append(ODI_DTAG_ERROR, "ODI IOCTL FAILED\n");
+        odi_debug_append(ODI_DTAG_ERROR, "[%s] ODI IOCTL FAILED, DEVICE NOT FOUND\n", device);
         return 0;
     }
 
-    ((struct odi_driver_functions*)device_info->control)->ioctl(device_info->control, buffer, device_info->minor, operation);
+    struct odi_driver_info * driver_info = odi_driver_get(identifier.major);
+    if (driver_info == 0) {
+        odi_debug_append(ODI_DTAG_ERROR, "[%s] ODI IOCTL FAILED, DRVIER NOT FOUND\n", device);
+        return 0;
+    }
+
+    //TODO: Make this return the number of bytes written
+    ((struct odi_driver_functions*)driver_info->functions)->ioctl(device_info->control, buffer, device_info->minor, operation);
 
     return 1;
 }

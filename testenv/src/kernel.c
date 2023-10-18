@@ -29,7 +29,7 @@ void _start(void) {
     odi_manual_device_register(0x8, 0x0);
     odi_list_devices();
 
-    odi_read("ata0", 0x0, 0x200, 0x0);
+    odi_read("hda", 0x0, 0x200, 0x0);
 
     odi_debug_flusha();
 
