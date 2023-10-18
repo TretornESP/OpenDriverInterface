@@ -10,7 +10,7 @@ u32 odi_discover_devices();
 u32 odi_discover_drivers();
 
 //Both available in manual and automatic mode
-struct odi_device_info * odi_manual_device_register(u32 major, void* control);
+void * odi_manual_device_register(u32 major, void* control);
 u8 odi_manual_device_unregister(u32 major, u32 minor);
 
 //Operations

@@ -108,6 +108,7 @@ override HEADER_DEPS := $(CFILES:.c=.d) $(ASFILES:.S=.d)
 all:
 	@make copy
 	@make kernel
+	@make ccopy
 	@echo "Building GPT..."
 #This is required to be before buildimggpt!
 	@cp $(ISODIR)/$(IMG_RAW) $(ISODIR)/$(IMG)
@@ -157,6 +158,10 @@ copy:
 	@cp -a $(ODIDIR)/. $(SRCDIR)/odi/
 	@cp -a $(DRVDIR)/. $(SRCDIR)/drivers/
 	@tree $(SRCDIR)/
+
+ccopy:
+	@rm -rf $(SRCDIR)/odi
+	@rm -rf $(SRCDIR)/drivers
 
 link: 
 #	@ echo !==== LINKING $^
@@ -258,6 +263,7 @@ help:
 debug:
 	@echo "WARNING: RIGHT NOW ONLY WSL DEBUGGING IS SUPPORTED"
 	@make kernel
+	@make ccopy
 	@echo "Building GPT..."
 #This is required to be before buildimggpt!
 	@cp $(ISODIR)/$(IMG_RAW) $(ISODIR)/$(IMG)

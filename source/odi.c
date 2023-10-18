@@ -3,8 +3,11 @@
 #include "debug.h"
 #include "config.h"
 
+//disable -Woverride-init
+#pragma GCC diagnostic ignored "-Woverride-init"
+
 const char* MAJOR_PREFIXES[ODI_MAX_MAJORS] = {
-    [0x0 ... 0x7] = "none",
+    [0x0 ... ODI_MAX_MAJORS -1] = "none",
     [8] = "hd",   // 8
     [9] = "cd",   // 9
     [0xa] = "semb", // a
@@ -15,7 +18,7 @@ const char* MAJOR_PREFIXES[ODI_MAX_MAJORS] = {
     [0xf] = "kbd", // f
     [0x10] = "mouse", // 10
     [0x11] = "net", // 11
-    [0x12 ... 254] = "none",
+    [86] = "pci",
     [255] = "basic"
 };
 
@@ -68,7 +71,7 @@ u32 odi_discover_drivers() {
 }
 
 //Both available in manual and automatic mode
-struct odi_device_info * odi_manual_device_register(u32 major, void* control) {
+void * odi_manual_device_register(u32 major, void* control) {
     odi_debug_append(ODI_DTAG_INFO, "ODI MANUAL DEVICE REGISTER REQUEST\n");
     return odi_device_register(major, control);
 }
