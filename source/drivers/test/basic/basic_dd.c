@@ -4,10 +4,10 @@
 #include "basic.h"
 
 //This include is just to print debug messages to the driver stack
-#include "../../../odi/debug.h"
+#include "../../../core/debug.h"
 
 //This is here to get the driver functions struct and the driver register functions
-#include "../../../odi/driver.h"
+#include "../../../core/driver.h"
 
 //Optional
 #pragma GCC diagnostic ignored "-Wunused-parameter"

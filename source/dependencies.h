@@ -1,7 +1,9 @@
 #ifndef _ODI_DEPENDENCIES_H
 #define _ODI_DEPENDENCIES_H
 
-#include "types.h"
+//ODI Dependencies file, your platform must implement this functions.
+
+#include "core/types.h"
 
 #include <stdarg.h>
 typedef va_list odi_va_list;

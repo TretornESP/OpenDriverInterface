@@ -1,6 +1,6 @@
 #include "types.h"
 #include "driver.h"
-#include "config.h"
+#include "../config.h"
 
 struct odi_driver_info odi_drivers[ODI_MAX_MAJORS] = {0};
 

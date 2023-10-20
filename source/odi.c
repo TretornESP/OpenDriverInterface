@@ -1,6 +1,6 @@
 #include "odi.h"
 #include "dependencies.h"
-#include "debug.h"
+#include "core/debug.h"
 #include "config.h"
 
 //disable -Woverride-init

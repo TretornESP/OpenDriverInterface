@@ -7,7 +7,7 @@
 //With the device. 
 
 //Just for portability reasons we include this header
-#include "../../../odi/types.h"
+#include "../../../core/types.h"
 
 
 //Even this functios are optional.
