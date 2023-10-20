@@ -2,8 +2,9 @@
 
 #include "pci.h"
 
-#include "../../../odi/debug.h"
-#include "../../../odi/driver.h"
+//This includes are not important!
+#include "../../../core/debug.h"
+#include "../../../core/driver.h"
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 

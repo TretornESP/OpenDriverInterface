@@ -1,9 +1,9 @@
 #ifndef _ODI_H
 #define _ODI_H
 
-#include "types.h"
-#include "driver.h"
-#include "device.h"
+#include "core/types.h"
+#include "core/driver.h"
+#include "core/device.h"
 
 //Only in automatic mode
 u32 odi_discover_devices();

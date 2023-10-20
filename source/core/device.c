@@ -1,7 +1,7 @@
-#include "config.h"
+#include "../config.h"
 #include "types.h"
 #include "device.h"
-#include "dependencies.h"
+#include "../dependencies.h"
 
 struct odi_device_info * odi_devices[ODI_MAX_MAJORS] = {0};
 

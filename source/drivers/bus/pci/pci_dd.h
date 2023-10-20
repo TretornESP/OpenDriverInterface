@@ -1,7 +1,7 @@
 #ifndef _PCI_DD_H
 #define _PCI_DD_H
 
-#include "../../../odi/types.h"
+#include "../../../core/types.h"
 
 #define PCI_IOCTL_SCAN_BUS      0x0001
 struct pci_ioctl_scan_bus_control {

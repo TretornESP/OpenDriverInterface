@@ -1,7 +1,7 @@
 #ifndef _ODI_DEBUG_H
 #define _ODI_DEBUG_H
 
-#include "config.h"
+#include "../config.h"
 
 #define ODI_DTAG_ERROR "error"
 #define ODI_DTAG_INFO "info"

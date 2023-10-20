@@ -1,6 +1,8 @@
 #ifndef _ODI_CONFIG_H
 #define _ODI_CONFIG_H
 
+//ODI Configuration file
+
 #define ODI_VERSION_MAJOR 0
 #define ODI_VERSION_MINOR 1
 

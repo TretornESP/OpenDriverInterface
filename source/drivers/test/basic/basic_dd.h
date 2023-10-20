@@ -11,7 +11,7 @@
 
 //You don't have to use this headers, it is only here
 //For portability reasons (type abstraction)
-#include "../../../odi/types.h"
+#include "../../../core/types.h"
 
 //Export codes for IOCTL calls (again, optional)
 #define IOCTL_BASIC_SAY_HI   0x1

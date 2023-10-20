@@ -1,7 +1,7 @@
 #include "pci.h"
 
-#include "../../../odi/dependencies.h"
-#include "../../../odi/debug.h"
+#include "../../../dependencies.h"
+#include "../../../core/debug.h"
 
 #define PCI_VIRT_BASE 0xffffaaff00000000
 

@@ -1,7 +1,7 @@
 #ifndef _PCI_H
 #define _PCI_H
 
-#include "../../../odi/types.h"
+#include "../../../core/types.h"
 
 #define PCI_INTERRUPT_START 0x64
 

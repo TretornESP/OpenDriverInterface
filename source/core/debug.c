@@ -1,5 +1,5 @@
 #include "debug.h"
-#include "dependencies.h"
+#include "../dependencies.h"
 #include "types.h"
 
 #define ODI_DEBUG_MSG_LEN 4096
